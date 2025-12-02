@@ -452,51 +452,30 @@ const ProcessSection = () => {
           <h3 className="font-bold tracking-tight text-4xl text-white">Hành Trình Sáng Tạo</h3>
         </div>
 
-        {/* Horizontal Scrollable Layout */}
-        <div className="relative">
-          {/* Horizontal Laser Line */}
-          <div className="absolute top-20 left-0 right-0 h-1 bg-gradient-to-r from-purple-600 via-cyan-400 to-purple-600 shadow-[0_0_15px_#22d3ee] rounded-full opacity-50 hidden md:block"></div>
+        <div className="max-w-3xl mx-auto relative">
+          {/* Vertical Line */}
+          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-600 via-cyan-400 to-purple-600 opacity-30"></div>
 
-          <div className="overflow-x-auto pb-8 scrollbar-hide">
-            <div className="flex gap-8 md:gap-12 min-w-max px-4 md:px-0">
-              {steps.map((step, index) => (
-                <div key={step.id} className="relative flex flex-col items-center" style={{ minWidth: '280px', maxWidth: '280px' }}>
-                  {/* Timeline Node */}
-                  <div className="relative w-16 h-16 mb-6 flex items-center justify-center">
-                    <div className="absolute inset-0 bg-black border-4 border-cyan-400 rounded-full shadow-[0_0_20px_#22d3ee]">
-                      <div className="absolute inset-0 bg-cyan-400 rounded-full animate-ping opacity-50"></div>
-                    </div>
-                    <div className="relative z-10 text-purple-400">
-                      {step.icon}
-                    </div>
-                  </div>
-
-                  {/* Connecting Line to next step */}
-                  {index < steps.length - 1 && (
-                    <div className="absolute top-8 left-full h-0.5 bg-cyan-500/50 shadow-[0_0_8px_#22d3ee] hidden md:block" style={{ width: '3rem' }}></div>
-                  )}
-
-                  {/* Content Card */}
-                  <div className={`${GLASS_CARD} p-6 rounded-xl hover:border-cyan-400/50 transition-all group hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] w-full`}>
-                    <div className="text-center mb-3">
-                      <span className="inline-block w-8 h-8 rounded-full bg-purple-900/50 text-purple-400 border border-purple-500/30 flex items-center justify-center text-sm font-bold mb-3 mx-auto">
-                        {step.id}
-                      </span>
-                    </div>
-                    <h4 className="text-lg font-bold text-white mb-3 text-center">{step.title}</h4>
-                    <p className="text-gray-300 text-sm leading-relaxed text-center">{step.description}</p>
+          <div className="space-y-12">
+            {steps.map((step) => (
+              <div key={step.id} className="relative flex items-start gap-8 group">
+                {/* Icon Node */}
+                <div className="relative z-10 flex-shrink-0 w-16 h-16 flex items-center justify-center bg-black border border-cyan-500/30 rounded-full shadow-[0_0_15px_rgba(34,211,238,0.2)] group-hover:border-cyan-400 group-hover:scale-110 transition-all duration-300">
+                  <div className="text-cyan-400 group-hover:text-white transition-colors">
+                    {step.icon}
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Scroll Hint */}
-          <div className="flex justify-center mt-6 md:hidden">
-            <div className="flex items-center gap-2 text-gray-500 text-xs">
-              <ArrowRight size={14} className="animate-pulse" />
-              <span>Vuốt sang ngang để xem thêm</span>
-            </div>
+                {/* Content */}
+                <div className={`${GLASS_CARD} p-6 rounded-xl flex-1 hover:border-cyan-400/30 transition-all group-hover:-translate-y-1`}>
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-purple-400 font-bold text-lg">0{step.id}.</span>
+                    <h4 className="text-xl font-bold text-white">{step.title}</h4>
+                  </div>
+                  <p className="text-gray-400 text-sm leading-relaxed">{step.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
